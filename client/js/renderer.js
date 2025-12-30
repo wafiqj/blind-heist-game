@@ -1,6 +1,7 @@
 /**
  * Blind Heist - Base Renderer Utilities
  * Common rendering functions used by role-specific views
+ * Mobile-optimized with responsive SVG scaling
  */
 
 class Renderer {
@@ -16,13 +17,32 @@ class Renderer {
     }
 
     /**
-     * Create an SVG element
+     * Calculate optimal cell size based on screen dimensions
+     */
+    getOptimalCellSize(mapWidth, mapHeight) {
+        const containerWidth = Math.min(window.innerWidth - 32, 800);
+        const containerHeight = Math.min(window.innerHeight * 0.45, 500);
+
+        const cellByWidth = Math.floor(containerWidth / mapWidth);
+        const cellByHeight = Math.floor(containerHeight / mapHeight);
+
+        // Use smaller dimension to ensure it fits, but cap it
+        const optimal = Math.min(cellByWidth, cellByHeight, 40);
+        return Math.max(optimal, 16); // Minimum 16px for visibility
+    }
+
+    /**
+     * Create an SVG element with responsive viewBox
      */
     createSVG(width, height, className = '') {
         const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-        svg.setAttribute('width', width);
-        svg.setAttribute('height', height);
         svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+        svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+        // Don't set fixed width/height - let CSS handle responsive scaling
+        svg.style.width = '100%';
+        svg.style.height = 'auto';
+        svg.style.maxHeight = '45vh';
+        svg.style.display = 'block';
         if (className) {
             svg.setAttribute('class', className);
         }
@@ -140,6 +160,30 @@ class Renderer {
      */
     clear(container) {
         container.innerHTML = '';
+    }
+
+    /**
+     * Detect if on mobile device
+     */
+    isMobile() {
+        return window.innerWidth < 768 ||
+            ('ontouchstart' in window) ||
+            (navigator.maxTouchPoints > 0);
+    }
+
+    /**
+     * Get compact label for mobile
+     */
+    getMobileLabel(fullLabel) {
+        if (!this.isMobile()) return fullLabel;
+        // Shorten labels for mobile
+        const shortLabels = {
+            'Navigator': 'Nav',
+            'Security': 'Sec',
+            'Loot Master': 'Loot',
+            'Alarm Controller': 'Alarm'
+        };
+        return shortLabels[fullLabel] || fullLabel;
     }
 }
 
