@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blind Heist - Multiplayer Cooperative Game</title>
+  <meta name="description" content="A 4-player cooperative heist game where players must communicate to succeed.">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  <!-- Lobby View -->
+  <div id="lobby-view" class="lobby-container">
+    <div class="lobby-card">
+      <div class="lobby-header">
+        <h1>🎭 Blind Heist</h1>
+        <p>A cooperative game of coordination and trust</p>
+      </div>
+
+      <!-- Connection Status -->
+      <div class="connection-status mb-md" style="justify-content: center;">
+        <div id="connection-dot" class="connection-dot"></div>
+        <span id="connection-text">Connecting...</span>
+      </div>
+
+      <!-- Initial Actions -->
+      <div id="lobby-actions" class="lobby-actions">
+        <button id="create-room-btn" class="btn btn-primary btn-block btn-lg" disabled>
+          🏠 Create Room
+        </button>
+
+        <div class="divider">or</div>
+
+        <div class="input-group">
+          <input type="text" id="room-code-input" placeholder="Enter room code" maxlength="6">
+          <button id="join-room-btn" class="btn btn-secondary" disabled>
+            Join
+          </button>
+        </div>
+      </div>
+
+      <!-- Waiting Room -->
+      <div id="waiting-room" class="waiting-room">
+        <div class="room-code-display">
+          <label>Room Code</label>
+          <div id="display-room-code" class="room-code">------</div>
+          <p style="color: var(--text-muted); font-size: 0.875rem; margin-top: 0.5rem;">
+            Share this code with other players
+          </p>
+        </div>
+
+        <div class="your-role">
+          <label>Your Role</label>
+          <div id="your-role-name" class="role-name">-</div>
+        </div>
+
+        <!-- Game Settings -->
+        <div class="game-settings" style="margin-bottom: 1rem;">
+          <h3 style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 0.75rem;">Game Settings</h3>
+          <div class="settings-row">
+            <label for="map-select">Map:</label>
+            <select id="map-select" class="settings-select">
+              <option value="bank">The Bank (Easy)</option>
+              <option value="museum">The Museum (Medium)</option>
+              <option value="fortress">The Fortress (Hard)</option>
+            </select>
+          </div>
+          <div class="settings-row" style="margin-top: 0.5rem;">
+            <label for="difficulty-select">Difficulty:</label>
+            <select id="difficulty-select" class="settings-select">
+              <option value="easy">Easy</option>
+              <option value="medium" selected>Medium</option>
+              <option value="hard">Hard</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="players-list">
+          <h3>Players (0/4)</h3>
+          <div id="players-container"></div>
+        </div>
+
+        <button id="start-game-btn" class="btn btn-success btn-block btn-lg" disabled>
+          🚀 Start Heist
+        </button>
+
+        <p id="waiting-message" class="text-center mt-md" style="color: var(--text-muted);">
+          Waiting for players...
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Game View -->
+  <div id="game-view" class="game-container hidden">
+    <header class="game-header">
+      <div class="game-title">🎭 Blind Heist</div>
+      <div id="role-badge" class="role-badge">Role</div>
+      <div id="game-status" class="game-status">Playing</div>
+      <button id="sound-toggle" class="sound-toggle" title="Toggle Sound">🔊</button>
+    </header>
+
+    <main class="game-main">
+      <div id="game-content"></div>
+    </main>
+
+    <!-- Controls (only shown for Navigator) -->
+    <div id="controls-container" class="controls-container hidden">
+      <div class="movement-controls">
+        <button class="move-btn up" data-direction="up">↑</button>
+        <button class="move-btn left" data-direction="left">←</button>
+        <button class="move-btn down" data-direction="down">↓</button>
+        <button class="move-btn right" data-direction="right">→</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Game Over Modal -->
+  <div id="game-over-modal" class="game-over-modal">
+    <div class="game-over-content">
+      <div id="game-over-icon" class="game-over-icon">🏆</div>
+      <h2 id="game-over-title" class="game-over-title">Game Over</h2>
+      <div id="game-over-stars" class="game-over-stars"></div>
+      <p id="game-over-message" class="game-over-message"></p>
+      <div id="game-over-breakdown" class="score-breakdown"></div>
+      <div id="game-over-score" class="game-over-score"></div>
+      <button id="play-again-btn" class="btn btn-primary btn-block">
+        Play Again
+      </button>
+    </div>
+  </div>
+
+  <script src="js/audio.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/lobby.js"></script>
+  <script src="js/renderer.js"></script>
+  <script src="js/roles/navigator.js"></script>
+  <script src="js/roles/security.js"></script>
+  <script src="js/roles/lootmaster.js"></script>
+  <script src="js/roles/alarmcontroller.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>

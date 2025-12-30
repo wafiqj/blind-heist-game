@@ -1,0 +1,17 @@
+{
+  "name": "blind-heist-game",
+  "version": "1.0.0",
+  "description": "A 4-player cooperative heist game with role-based partial views",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node server/index.js"
+  },
+  "keywords": ["multiplayer", "game", "websocket", "heist"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "uuid": "^9.0.0",
+    "ws": "^8.14.2"
+  }
+}
