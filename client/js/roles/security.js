@@ -8,10 +8,14 @@ class SecurityView {
     this.container = null;
     this.CELL_SIZE = 32;
     this.selectedCamera = null;
+    this.dropdownInitialized = false;
   }
 
   init(container) {
     this.container = container;
+    this.selectedCamera = null;
+    this.dropdownInitialized = false;
+
     this.container.innerHTML = `
       <div class="game-canvas-container security-view">
         <div id="security-canvas"></div>
@@ -48,6 +52,9 @@ class SecurityView {
       if (this.selectedCamera !== null) {
         gameClient.useAbility('disableCamera', { cameraId: this.selectedCamera });
         this.selectedCamera = null;
+        // Reset dropdown after use
+        const dropdown = document.getElementById('camera-dropdown');
+        if (dropdown) dropdown.value = '';
       }
     });
   }
@@ -96,7 +103,7 @@ class SecurityView {
 
     canvasContainer.appendChild(svg);
 
-    // Update camera selector
+    // Update camera selector (without recreating if open)
     this.updateCameraSelector(cameras, ability);
 
     // Process sound events
@@ -182,26 +189,52 @@ class SecurityView {
     const btn = document.getElementById('disable-camera-btn');
     if (!selectContainer || !btn) return;
 
-    const activeCameras = cameras.filter(c => !c.disabled);
+    // Check if dropdown already exists
+    let dropdown = document.getElementById('camera-dropdown');
 
-    selectContainer.innerHTML = `
-      <select id="camera-dropdown" class="camera-dropdown">
-        <option value="">Select Camera to Disable</option>
-        ${cameras.map((cam, i) =>
-      `<option value="${i}" ${cam.disabled ? 'disabled' : ''}>
-            Camera ${i + 1} ${cam.disabled ? '(Disabled)' : cam.rotates ? '(Rotating)' : '(Static)'}
-          </option>`
-    ).join('')}
-      </select>
-    `;
+    // Only create dropdown if it doesn't exist
+    if (!dropdown) {
+      selectContainer.innerHTML = `
+        <select id="camera-dropdown" class="camera-dropdown">
+          <option value="">Select Camera to Disable</option>
+          ${cameras.map((cam, i) =>
+        `<option value="${i}" ${cam.disabled ? 'disabled' : ''}>
+              Camera ${i + 1} ${cam.disabled ? '(Disabled)' : cam.rotates ? '(Rotating)' : '(Static)'}
+            </option>`
+      ).join('')}
+        </select>
+      `;
 
-    const dropdown = document.getElementById('camera-dropdown');
-    dropdown.addEventListener('change', (e) => {
-      this.selectedCamera = e.target.value !== '' ? parseInt(e.target.value) : null;
-      btn.disabled = this.selectedCamera === null || !ability?.disableCamera?.available;
-    });
+      dropdown = document.getElementById('camera-dropdown');
+      dropdown.addEventListener('change', (e) => {
+        this.selectedCamera = e.target.value !== '' ? parseInt(e.target.value) : null;
+        this.updateButtonState(ability);
+      });
+    } else {
+      // Update options without recreating dropdown
+      const currentValue = dropdown.value;
 
-    // Update ability status
+      // Update disabled states on existing options
+      cameras.forEach((cam, i) => {
+        const option = dropdown.querySelector(`option[value="${i}"]`);
+        if (option) {
+          option.disabled = cam.disabled;
+          option.textContent = `Camera ${i + 1} ${cam.disabled ? '(Disabled)' : cam.rotates ? '(Rotating)' : '(Static)'}`;
+        }
+      });
+
+      // Restore selection
+      dropdown.value = currentValue;
+    }
+
+    // Update button state
+    this.updateButtonState(ability);
+  }
+
+  updateButtonState(ability) {
+    const btn = document.getElementById('disable-camera-btn');
+    if (!btn) return;
+
     const status = btn.querySelector('.ability-status');
     if (ability?.disableCamera) {
       if (ability.disableCamera.available) {

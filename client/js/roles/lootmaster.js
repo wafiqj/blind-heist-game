@@ -8,6 +8,7 @@ class LootMasterView {
     this.container = null;
     this.CELL_SIZE = 32;
     this.selectedLoot = null;
+    this.dropdownInitialized = false;
 
     this.lootIcons = {
       diamond: '💎',
@@ -28,6 +29,9 @@ class LootMasterView {
 
   init(container) {
     this.container = container;
+    this.selectedLoot = null;
+    this.dropdownInitialized = false;
+
     this.container.innerHTML = `
       <div class="game-canvas-container lootmaster-view">
         <div id="lootmaster-canvas"></div>
@@ -51,6 +55,9 @@ class LootMasterView {
       if (this.selectedLoot !== null) {
         gameClient.useAbility('pingLoot', { lootId: this.selectedLoot });
         this.selectedLoot = null;
+        // Reset dropdown after use
+        const dropdown = document.getElementById('loot-dropdown');
+        if (dropdown) dropdown.value = '';
       }
     });
   }
@@ -202,25 +209,60 @@ class LootMasterView {
     const btn = document.getElementById('ping-loot-btn');
     if (!selectContainer || !btn) return;
 
-    const uncollected = loot.filter(l => !l.collected && !l.pinged);
+    // Check if dropdown already exists
+    let dropdown = document.getElementById('loot-dropdown');
 
-    selectContainer.innerHTML = `
-      <select id="loot-dropdown" class="loot-dropdown">
-        <option value="">Select Loot to Ping</option>
-        ${loot.map((item, i) =>
-      `<option value="${i}" ${item.collected || item.pinged ? 'disabled' : ''}>
-            ${this.lootIcons[item.type]} ${item.type} at (${item.x},${item.y}) - $${item.value}
-            ${item.collected ? '(Collected)' : item.pinged ? '(Pinged)' : ''}
-          </option>`
-    ).join('')}
-      </select>
-    `;
+    // Only create dropdown if it doesn't exist
+    if (!dropdown) {
+      selectContainer.innerHTML = `
+        <select id="loot-dropdown" class="loot-dropdown">
+          <option value="">Select Loot to Ping</option>
+          ${loot.map((item, i) =>
+        `<option value="${i}" ${item.collected || item.pinged ? 'disabled' : ''}>
+              ${this.lootIcons[item.type]} ${item.type} at (${item.x},${item.y}) - $${item.value}
+              ${item.collected ? '(Collected)' : item.pinged ? '(Pinged)' : ''}
+            </option>`
+      ).join('')}
+        </select>
+      `;
 
-    const dropdown = document.getElementById('loot-dropdown');
-    dropdown.addEventListener('change', (e) => {
-      this.selectedLoot = e.target.value !== '' ? parseInt(e.target.value) : null;
-      btn.disabled = this.selectedLoot === null || !ability?.pingLoot?.available;
-    });
+      dropdown = document.getElementById('loot-dropdown');
+      dropdown.addEventListener('change', (e) => {
+        this.selectedLoot = e.target.value !== '' ? parseInt(e.target.value) : null;
+        this.updateButtonState(ability);
+      });
+    } else {
+      // Update options without recreating dropdown
+      const currentValue = dropdown.value;
+
+      // Update disabled states on existing options
+      loot.forEach((item, i) => {
+        const option = dropdown.querySelector(`option[value="${i}"]`);
+        if (option) {
+          option.disabled = item.collected || item.pinged;
+          option.textContent = `${this.lootIcons[item.type]} ${item.type} at (${item.x},${item.y}) - $${item.value} ${item.collected ? '(Collected)' : item.pinged ? '(Pinged)' : ''}`;
+        }
+      });
+
+      // If selected loot was collected or pinged, reset selection
+      if (this.selectedLoot !== null) {
+        const selectedItem = loot[this.selectedLoot];
+        if (selectedItem && (selectedItem.collected || selectedItem.pinged)) {
+          this.selectedLoot = null;
+          dropdown.value = '';
+        } else {
+          dropdown.value = currentValue;
+        }
+      }
+    }
+
+    // Update button state
+    this.updateButtonState(ability);
+  }
+
+  updateButtonState(ability) {
+    const btn = document.getElementById('ping-loot-btn');
+    if (!btn) return;
 
     const status = btn.querySelector('.ability-status');
     if (ability?.pingLoot) {
